@@ -1,4 +1,5 @@
 import csv , re
+#This program is very adaptive, you could change most of the parameters to your need 
 
 # Parameters
 title = ["Name", "ID", "Gender", "Department", "Position", "Salary"] #To check title
@@ -6,7 +7,7 @@ int_data = ["Salary"] #Data listed hear can only take interger
 non_capitalize_data = ["ID"] # Data listed hear can't be Int or Gender
 Negative_Value = False #True mean int_data could be negative and Vise versa
 file_name = "Employee_data.csv" # File name
-regularExp = re.compile(",")
+regularExp = re.compile(",") # Don't delete comma
 wellcome_text = "Wellcome to employee data"
 main_data = []
 
@@ -109,7 +110,7 @@ def create_data ():
         if title[data].capitalize() == "Gender":
             Gender = input ("Enter Gender : ")
             while Gender.lower() not in ["male", "female", "other"] or regularExp.search(Gender) != None:
-                print ("Gender must be male, female or other and cannot have komma[,]")
+                print ("Gender must be male, female or other and cannot have comma[,]")
                 Gender   = input ("Enter Gender Again : ")
             input_data.append(Gender.capitalize())
         elif title[data] in int_data :
@@ -128,13 +129,13 @@ def create_data ():
         elif title[data] in non_capitalize_data:
             prompt = input(f"Enter {title[data]} : ")
             while prompt == "" or prompt.isspace() or regularExp.search(prompt) != None:
-                print(f"{title[data]} cannot be empty or has komma[,] ")
+                print(f"{title[data]} cannot be empty or has comma[,] ")
                 prompt = input (f"Enter {title[data]} : ")
             input_data.append(prompt)
         else:
             prompt = input(f"Enter {title[data]} : ")
             while prompt == "" or prompt.isspace() or regularExp.search(prompt) != None:
-                print(f"{title[data]} cannot be empty or has komma[,] ")
+                print(f"{title[data]} cannot be empty or has comma[,] ")
                 prompt = input (f"Enter {title[data]} : ")
             input_data.append(prompt.capitalize())
                 
@@ -184,7 +185,7 @@ def change_data ():
                     else :
                         prompt = input(f"Enter New {title[selection - 1]} : ")
                         while prompt == "" or prompt.isspace() or regularExp.search(prompt) != None:
-                            print(f"{title[selection - 1]} cannot be empty or has komma[,] ")
+                            print(f"{title[selection - 1]} cannot be empty or has comma[,] ")
                             prompt = input (f"Enter New {title[selection - 1]} : ")
                         if title[selection - 1] in non_capitalize_data:
                             main_data[Num_data][selection - 1] = prompt
