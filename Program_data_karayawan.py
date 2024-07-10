@@ -1,5 +1,6 @@
 import csv , re
 #This program is very adaptive, you could change most of the parameters to your need 
+#Made by Robby Edwardo
 
 # Parameters
 title = ["Name", "ID", "Gender", "Department", "Position", "Salary"] #To check title
