@@ -6,9 +6,9 @@ title = ["Name", "ID", "Gender", "Department", "Position", "Salary"] #To check t
 int_data = ["Salary"] #Data listed hear can only take interger
 non_capitalize_data = ["ID"] # Data listed hear can't be Int or Gender
 Negative_Value = False #True mean int_data could be negative and Vise versa
-file_name = "Employee_data.csv" # File name
+file_name = "data.csv" # File name
 regularExp = re.compile(",") # Don't delete comma
-wellcome_text = "Wellcome to employee data"
+wellcome_text = "Wellcome to employee data Center"
 main_data = []
 
 def reading_data () :
@@ -30,7 +30,7 @@ def reading_data () :
         reading_data()
 
 def Saved_data():
-    with open("Employee_data.csv", mode="w", newline="") as csv_file:
+    with open(file_name, mode="w", newline="") as csv_file:
         csv_writer = csv.writer(csv_file, delimiter=",")
         csv_writer.writerows(main_data)
         csv_file.close()
@@ -38,7 +38,7 @@ def Saved_data():
 def checking_title ():
     repeater = 0
     checker = 0
-    print("Checking Title...")
+    print("\nChecking Title...")
     for data in main_data[0]:
         if data == title[repeater] and checker == 0:
             repeater += 1
@@ -59,6 +59,39 @@ def checking_title ():
         print("Title is in the correct format")
     else :
         print ("Recovery Successed")
+
+def checking_data():
+    if len (main_data) > 1:
+        print("\nChecking Data...")
+        error_file = []
+        checker = 0
+        for data in main_data:
+            if len(data) == len(title):
+                checker += 1
+            else :
+                error_file.append(data)
+                print(f"No.{checker} = [" + ", ".join(data) + "]")
+                checker += 1
+        if len(error_file) > 0:
+            print("Data on top is not in the correct format\nIf you don't want to delete the data the program will exit")
+            while True:
+                reply = input("Do you want to delete the data and continue the program (y/n) : ")
+                if reply.lower() == "y":
+                    for error in error_file:
+                        print(error)
+                        main_data.remove(error)
+                    print("Data Fixed")
+                    break
+                elif reply.lower() == "n":
+                    exit()
+                else:
+                    print("Please chose y or n")
+        else:
+            pass
+    else :
+        pass
+    
+
 
 def delete_data ():
     if len(main_data) > 1:
@@ -289,6 +322,7 @@ def searching_data ():
 def main ():
     reading_data()
     checking_title()
+    checking_data()
     while True:
         print(f"=================  {wellcome_text} =================")
         sel = input("1. Print all data \n2. Create Data \n3. Change Data \n4. Delete Data \n5. Search Data \n6. Sort data \n7. Save and Exit \n8. Exit Only\nSelect your option : ")
