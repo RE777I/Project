@@ -90,8 +90,6 @@ def checking_data():
             pass
     else :
         pass
-    
-
 
 def delete_data ():
     if len(main_data) > 1:
@@ -175,7 +173,6 @@ def create_data ():
     main_data.append(input_data)
     print("Data Created")
     
-
 def change_data ():
     while len(main_data) > 1:
         Num_data = input(f"Enter the data number you want to change : 1 - {len(main_data) - 1} : ")
